@@ -14,9 +14,6 @@ class LinearDotsAnimation : DotsAnimation {
 
         ValueAnimator.ofFloat(startPositionX , endPositionX).apply {
             addUpdateListener { animation ->
-                if (dotIndex == 0) {
-                    Log.d("DotLoadingPapu", animation.animatedValue.toString())
-                }
                 val currentValue = animation.animatedValue as Float
                 dot.translationX = currentValue
             }
