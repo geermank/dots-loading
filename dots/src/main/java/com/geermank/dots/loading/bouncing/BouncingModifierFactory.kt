@@ -1,0 +1,16 @@
+package com.geermank.dots.loading.bouncing
+
+import com.geermank.dots.loading.DotPositionDecider
+import com.geermank.dots.loading.DotsAnimation
+import com.geermank.dots.loading.DotsModifiersFactory
+
+class BouncingModifierFactory : DotsModifiersFactory {
+
+    override fun createDotsAnimation(): DotsAnimation {
+        return BouncingDotAnimation()
+    }
+
+    override fun createDotsPositionDecider(): DotPositionDecider {
+        return BouncingPositionDecider()
+    }
+}

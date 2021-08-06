@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="DotLoading">
+        <attr name="numberOfDots" format="integer"/>
+        <attr name="loadingType" format="enum">
+            <enum name="circular" value="0"/>
+            <enum name="orbit" value="1"/>
+            <enum name="linear" value="2"/>
+            <enum name="bouncing" value="3"/>
+        </attr>
+    </declare-styleable>
+
+</resources>
