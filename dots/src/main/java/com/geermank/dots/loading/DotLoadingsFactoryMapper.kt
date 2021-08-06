@@ -8,13 +8,13 @@ import com.geermank.dots.loading.orbit.OrbitModifiersFactory
 internal class DotLoadingsFactoryMapper {
 
     private val styles = mapOf(
-        Pair(DotLoadings.CIRCULAR, CircularProgressModifiersFactory()),
-        Pair(DotLoadings.ORBIT, OrbitModifiersFactory()),
-        Pair(DotLoadings.LINEAR, LinearModifierFactory()),
-        Pair(DotLoadings.BOUNCING, BouncingModifierFactory())
+        Pair(DotLoadingTypes.CIRCULAR, CircularProgressModifiersFactory()),
+        Pair(DotLoadingTypes.ORBIT, OrbitModifiersFactory()),
+        Pair(DotLoadingTypes.LINEAR, LinearModifierFactory()),
+        Pair(DotLoadingTypes.BOUNCING, BouncingModifierFactory())
     )
 
-    fun getByKey(key: DotLoadings): DotsModifiersFactory {
+    fun getByKey(key: DotLoadingTypes): DotsModifiersFactory {
         return styles[key] ?: NoModifierFactory()
     }
 }

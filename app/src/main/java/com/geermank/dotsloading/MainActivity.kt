@@ -2,9 +2,6 @@ package com.geermank.dotsloading
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import com.geermank.dots.loading.DotLoadings
-import com.geermank.dots.loading.view.DotLoading
 
 class MainActivity : AppCompatActivity(), MenuFragment.MenuFragmentListener {
 

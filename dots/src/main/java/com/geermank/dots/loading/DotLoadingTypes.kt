@@ -1,6 +1,6 @@
 package com.geermank.dots.loading
 
-enum class DotLoadings {
+enum class DotLoadingTypes {
     CIRCULAR,
     ORBIT,
     LINEAR,

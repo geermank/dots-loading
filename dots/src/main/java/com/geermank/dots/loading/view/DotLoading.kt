@@ -9,7 +9,7 @@ import androidx.core.view.children
 import com.geermank.dots.R
 import com.geermank.dots.dot.Dot
 import com.geermank.dots.extensions.getDimenPixelSize
-import com.geermank.dots.loading.DotLoadings
+import com.geermank.dots.loading.DotLoadingTypes
 import com.geermank.dots.loading.DotLoadingsFactoryMapper
 import com.geermank.dots.loading.DotsModifiersFactory
 
@@ -52,11 +52,11 @@ class DotLoading @JvmOverloads constructor(
 
     private fun createDotsModifierFactory(typedArray: TypedArray): DotsModifiersFactory {
         val valuesMapper = DotLoadingsFactoryMapper()
-        val key = DotLoadings.values()[typedArray.getInt(R.styleable.DotLoading_loadingType, 0)]
+        val key = DotLoadingTypes.values()[typedArray.getInt(R.styleable.DotLoading_loadingType, 0)]
         return valuesMapper.getByKey(key)
     }
 
-    private fun createDotsModifierFactory(key: DotLoadings): DotsModifiersFactory {
+    private fun createDotsModifierFactory(key: DotLoadingTypes): DotsModifiersFactory {
         val valuesMapper = DotLoadingsFactoryMapper()
         return valuesMapper.getByKey(key)
     }
