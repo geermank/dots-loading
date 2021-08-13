@@ -56,11 +56,6 @@ class DotLoading @JvmOverloads constructor(
         return valuesMapper.getByKey(key)
     }
 
-    private fun createDotsModifierFactory(key: DotLoadingTypes): DotsModifiersFactory {
-        val valuesMapper = DotLoadingsFactoryMapper()
-        return valuesMapper.getByKey(key)
-    }
-
     @DimenRes
     private fun getLoadingSize(attrs: TypedArray): Int {
         // TODO get the size from attrs
@@ -85,7 +80,7 @@ class DotLoading @JvmOverloads constructor(
     private fun calculateAndSetDotsPositions() {
         children.forEachIndexed { index, dot ->
             val dotsPositionDecider = dotsModifiersFactory.createDotsPositionDecider()
-            val coordinates = dotsPositionDecider.getPosition(index, dot as Dot, getSizeInPixels(), childCount) // TODO remove magic number
+            val coordinates = dotsPositionDecider.getPosition(index, dot as Dot, getSizeInPixels(), childCount)
 
             dot.x = coordinates.getX().toFloat()
             dot.y = coordinates.getY().toFloat()

@@ -4,7 +4,7 @@ import android.graphics.RectF
 import com.geermank.dots.dot.Dot
 import com.geermank.dots.loading.view.DotLoading
 
-interface CircularProgressPathCalculator {
+internal interface CircularProgressPathCalculator {
     fun calculateAngleOffset(dotIndex: Int): Int
     fun createRectFForCirclePath(container: DotLoading, dot: Dot): RectF
     fun progressSpeed(): Long

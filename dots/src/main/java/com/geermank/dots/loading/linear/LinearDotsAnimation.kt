@@ -6,7 +6,7 @@ import com.geermank.dots.dot.Dot
 import com.geermank.dots.loading.DotsAnimation
 import com.geermank.dots.loading.view.DotLoading
 
-class LinearDotsAnimation : DotsAnimation {
+internal class LinearDotsAnimation : DotsAnimation {
 
     override fun animateDot(container: DotLoading, dot: Dot, dotIndex: Int) {
         val startPositionX = 0f + dotIndex * dot.getDiameter()

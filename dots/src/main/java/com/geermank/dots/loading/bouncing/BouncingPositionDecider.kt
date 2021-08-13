@@ -4,7 +4,7 @@ import com.geermank.dots.dot.Dot
 import com.geermank.dots.loading.DotPositionDecider
 import com.geermank.dots.utils.Coordinates
 
-class BouncingPositionDecider : DotPositionDecider {
+internal class BouncingPositionDecider : DotPositionDecider {
 
     override fun getPosition(indexOfDot: Int, dot: Dot, containerSize: Int, totalNumberOfDots: Int): Coordinates {
         val middleIndex = (totalNumberOfDots / 2) - getIndexOffset(totalNumberOfDots)

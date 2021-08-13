@@ -4,7 +4,7 @@ import com.geermank.dots.loading.DotPositionDecider
 import com.geermank.dots.loading.DotsAnimation
 import com.geermank.dots.loading.DotsModifiersFactory
 
-class LinearModifierFactory : DotsModifiersFactory {
+internal class LinearModifierFactory : DotsModifiersFactory {
 
     override fun createDotsAnimation(): DotsAnimation {
         return LinearDotsAnimation()

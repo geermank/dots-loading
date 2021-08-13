@@ -7,7 +7,7 @@ import com.geermank.dots.loading.view.DotLoading
 const val DEFAULT_DOT_SEPARATION_ANGLE = 15
 const val DEFAULT_ANIMATION_SPEED = 2500L
 
-class DefaultCircularProgressPathCalculator : CircularProgressPathCalculator {
+internal class DefaultCircularProgressPathCalculator : CircularProgressPathCalculator {
 
     override fun calculateAngleOffset(dotIndex: Int): Int {
         return dotIndex * DEFAULT_DOT_SEPARATION_ANGLE

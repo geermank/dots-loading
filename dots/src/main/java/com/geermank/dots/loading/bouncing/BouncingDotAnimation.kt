@@ -8,7 +8,7 @@ import com.geermank.dots.dot.Dot
 import com.geermank.dots.loading.DotsAnimation
 import com.geermank.dots.loading.view.DotLoading
 
-class BouncingDotAnimation : DotsAnimation {
+internal class BouncingDotAnimation : DotsAnimation {
 
     override fun animateDot(container: DotLoading, dot: Dot, dotIndex: Int) {
         val originY = container.getSizeInPixels() / 2f

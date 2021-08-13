@@ -1,15 +1,13 @@
 package com.geermank.dots.utils
 
-import kotlin.math.abs
-
 private const val X_COORDINATE_INDEX = 0
 private const val Y_COORDINATE_INDEX = 1
 
-class Coordinates {
+internal class Coordinates(x: Double, y: Double) {
 
     private val values = DoubleArray(2)
 
-    constructor(x: Double, y: Double) {
+    init {
         values[X_COORDINATE_INDEX] = x
         values[Y_COORDINATE_INDEX] = y
     }

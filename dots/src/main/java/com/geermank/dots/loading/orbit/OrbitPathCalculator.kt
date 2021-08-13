@@ -13,7 +13,7 @@ private const val RANDOM_SUPERIOR_ANGLE_LIMIT = 135
 private const val RANDOM_INFERIOR_SPEED_LIMIT = 2000L
 private const val RANDOM_SUPERIOR_SPEED_LIMIT = 5000L
 
-class OrbitPathCalculator : CircularProgressPathCalculator {
+internal class OrbitPathCalculator : CircularProgressPathCalculator {
 
     override fun calculateAngleOffset(dotIndex: Int): Int {
         return (RANDOM_INFERIOR_ANGLE_LIMIT..RANDOM_SUPERIOR_ANGLE_LIMIT).random()

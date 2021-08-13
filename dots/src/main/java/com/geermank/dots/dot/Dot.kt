@@ -11,7 +11,7 @@ import com.geermank.dots.R
 import com.geermank.dots.extensions.getColor
 import com.geermank.dots.extensions.getDimenPixelSize
 
-class Dot @JvmOverloads constructor(
+internal class Dot @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0

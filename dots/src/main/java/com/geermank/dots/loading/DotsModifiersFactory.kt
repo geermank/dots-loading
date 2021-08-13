@@ -4,7 +4,7 @@ import com.geermank.dots.dot.Dot
 import com.geermank.dots.loading.view.DotLoading
 import com.geermank.dots.utils.Coordinates
 
-interface DotsModifiersFactory {
+internal interface DotsModifiersFactory {
     fun createDotsAnimation(): DotsAnimation
     fun createDotsPositionDecider(): DotPositionDecider
 }
