@@ -1,23 +1,38 @@
 package com.geermank.dots.loading.bouncing
 
 import com.geermank.dots.dot.Dot
+import com.geermank.dots.extensions.isEven
 import com.geermank.dots.loading.DotPositionDecider
+import com.geermank.dots.loading.view.DotLoadingSpecs
 import com.geermank.dots.utils.Coordinates
 
 internal class BouncingPositionDecider : DotPositionDecider {
 
-    override fun getPosition(indexOfDot: Int, dot: Dot, containerSize: Int, totalNumberOfDots: Int): Coordinates {
-        val middleIndex = (totalNumberOfDots / 2) - getIndexOffset(totalNumberOfDots)
-        val indexRelativeToTheCenter = indexOfDot - middleIndex
-
-        val y = containerSize / 2.0
-        val x = containerSize / 2.0 + indexRelativeToTheCenter * (dot.getDiameter() + 16.0) - getXOffset(totalNumberOfDots, dot)
+    override fun getPosition(dotIndex: Int, dot: Dot, dotLoadingSpecs: DotLoadingSpecs): Coordinates {
+        val y = calculateYCoordinate(dotLoadingSpecs)
+        val x = calculateXCoordinate(dotIndex, dot, dotLoadingSpecs)
         return Coordinates(x, y)
+    }
+
+    private fun calculateYCoordinate(dotLoadingSpecs: DotLoadingSpecs): Double {
+        return dotLoadingSpecs.getContainerHeightInPixels() / 2.0
+    }
+
+    private fun calculateXCoordinate(
+        dotIndex: Int,
+        dot: Dot,
+        dotLoadingSpecs: DotLoadingSpecs
+    ): Double {
+        val middleIndex = (dotLoadingSpecs.numberOfDots / 2) - getIndexOffset(dotLoadingSpecs.numberOfDots)
+        val indexRelativeToTheCenter = dotIndex - middleIndex
+        return dotLoadingSpecs.getContainerWidthInPixels() / 2.0 +
+                indexRelativeToTheCenter * (dot.getDiameter() + 16.0) -
+                getXOffset(dotLoadingSpecs.numberOfDots, dot)
     }
 
     private fun getIndexOffset(totalNumberOfDots: Int): Int {
         // we only apply a corrective offset on even numbers
-        return if (totalNumberOfDots % 2 == 0) {
+        return if (totalNumberOfDots.isEven()) {
             1
         } else {
             0
@@ -25,8 +40,9 @@ internal class BouncingPositionDecider : DotPositionDecider {
     }
 
     private fun getXOffset(totalNumberOfDots: Int, dot: Dot): Double {
+        // we only apply a corrective offset on even numbers
         val dotSize = dot.getDiameter().toDouble()
-        return if (totalNumberOfDots % 2 == 0) {
+        return if (totalNumberOfDots.isEven()) {
             dotSize
         } else {
             dotSize / 2

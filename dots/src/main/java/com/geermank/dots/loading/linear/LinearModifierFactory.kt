@@ -13,4 +13,8 @@ internal class LinearModifierFactory : DotsModifiersFactory {
     override fun createDotsPositionDecider(): DotPositionDecider {
         return LinearDotPositionDecider()
     }
+
+    override fun requiresHorizontalContainer(): Boolean {
+        return true
+    }
 }

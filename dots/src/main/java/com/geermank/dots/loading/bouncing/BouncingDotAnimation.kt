@@ -11,8 +11,8 @@ import com.geermank.dots.loading.view.DotLoading
 internal class BouncingDotAnimation : DotsAnimation {
 
     override fun animateDot(container: DotLoading, dot: Dot, dotIndex: Int) {
-        val originY = container.getSizeInPixels() / 2f
-        val targetY = originY - (dot.getDiameter() * 3)
+        val originY = container.getSizeInPixels().height / 2f
+        val targetY = originY - (dot.getDiameter() * 3) // we jump 3 times the heigth of a dot
         ObjectAnimator.ofFloat(dot, View.TRANSLATION_Y, originY, targetY).apply {
             repeatMode = ObjectAnimator.REVERSE
             repeatCount = Animation.INFINITE

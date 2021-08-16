@@ -13,4 +13,8 @@ internal class BouncingModifierFactory : DotsModifiersFactory {
     override fun createDotsPositionDecider(): DotPositionDecider {
         return BouncingPositionDecider()
     }
+
+    override fun requiresHorizontalContainer(): Boolean {
+        return false
+    }
 }

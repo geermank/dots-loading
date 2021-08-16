@@ -14,7 +14,9 @@ internal class DefaultCircularProgressPathCalculator : CircularProgressPathCalcu
     }
 
     override fun createRectFForCirclePath(container: DotLoading, dot: Dot): RectF {
-        val sizeWithMargin = container.getSizeInPixels().toFloat() - dot.getDiameter()
+        // we must get the smallest value, if not a dot may be cut during animation
+        val containerSize = container.getSizeInPixels().getSmallest().toFloat()
+        val sizeWithMargin = containerSize - dot.getDiameter()
         return RectF(0f, 0f, sizeWithMargin, sizeWithMargin)
     }
 

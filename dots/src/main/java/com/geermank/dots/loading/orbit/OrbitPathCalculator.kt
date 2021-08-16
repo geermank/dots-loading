@@ -20,7 +20,9 @@ internal class OrbitPathCalculator : CircularProgressPathCalculator {
     }
 
     override fun createRectFForCirclePath(container: DotLoading, dot: Dot): RectF {
-        val maxValue = container.getSizeInPixels() - dot.getDiameter()
+        val containerSize = container.getSizeInPixels().getSmallest()
+
+        val maxValue = containerSize - dot.getDiameter()
         val minValue = dot.getDiameter() * 2
 
         val rectSize = (minValue..maxValue).random().toFloat()

@@ -2,16 +2,19 @@ package com.geermank.dots.loading.circular
 
 import com.geermank.dots.dot.Dot
 import com.geermank.dots.loading.DotPositionDecider
+import com.geermank.dots.loading.view.DotLoadingSpecs
 import com.geermank.dots.utils.Coordinates
 import kotlin.math.cos
 import kotlin.math.sin
 
 internal class CircularProgressDotPositionDecider : DotPositionDecider {
 
-    override fun getPosition(indexOfDot: Int, dot: Dot, containerSize: Int, totalNumberOfDots: Int): Coordinates {
+    override fun getPosition(dotIndex: Int, dot: Dot, dotLoadingSpecs: DotLoadingSpecs): Coordinates {
+        val containerSize = dotLoadingSpecs.containerSize.getSmallest()
+
         // basically, the container size represents the diameter of the circular progress
         val radius = containerSize / 2
-        val angle = calculateAngleBasedOnIndex(indexOfDot)
+        val angle = calculateAngleBasedOnIndex(dotIndex)
         val x = calculateXCoordinate(radius, angle)
         val y = calculateYCoordinate(radius, angle)
         return Coordinates(x, y)

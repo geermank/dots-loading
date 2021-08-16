@@ -1,9 +1,11 @@
 package com.geermank.dots.dot
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import com.geermank.dots.utils.ViewSize
 
-@Parcelize
 internal data class DotSpecs(
-    var diameter: Int
-) : Parcelable
+    var dotSize: ViewSize
+) {
+
+    fun getWidth() = dotSize.width
+    fun getHeight() = dotSize.height
+}

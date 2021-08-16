@@ -3,6 +3,10 @@
 
     <declare-styleable name="DotLoading">
         <attr name="numberOfDots" format="integer"/>
+        <attr name="loadingSize" format="enum">
+            <enum name="small" value="0"/>
+            <enum name="large" value="1"/>
+        </attr>
         <attr name="loadingType" format="enum">
             <enum name="circular" value="0"/>
             <enum name="orbit" value="1"/>

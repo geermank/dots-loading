@@ -13,4 +13,8 @@ internal open class CircularProgressModifiersFactory : DotsModifiersFactory {
     override fun createDotsPositionDecider(): DotPositionDecider {
         return CircularProgressDotPositionDecider()
     }
+
+    override fun requiresHorizontalContainer(): Boolean {
+        return false
+    }
 }

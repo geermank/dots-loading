@@ -10,6 +10,7 @@ import androidx.annotation.ColorRes
 import com.geermank.dots.R
 import com.geermank.dots.extensions.getColor
 import com.geermank.dots.extensions.getDimenPixelSize
+import com.geermank.dots.utils.ViewSize
 
 internal class Dot @JvmOverloads constructor(
     context: Context,
@@ -17,24 +18,26 @@ internal class Dot @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    private val specs = DotSpecs(getDimenPixelSize(R.dimen.large_dot_diameter))
+    private var specs: DotSpecs = DotSpecs(ViewSize(0, 0))
+
+    constructor(context: Context, size: ViewSize) : this(context) {
+        specs = DotSpecs(size)
+    }
+
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = R.attr.colorSecondary
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        setMeasuredDimension(
-            getDimenPixelSize(R.dimen.large_dot_diameter),
-            getDimenPixelSize(R.dimen.large_dot_diameter)
-        )
+        setMeasuredDimension(specs.getWidth(), specs.getHeight())
     }
 
     fun setDiameter(diameter: Int) {
-        specs.diameter = diameter
+        specs.dotSize = ViewSize(diameter, diameter)
         invalidate()
     }
 
-    fun getDiameter() = specs.diameter
+    fun getDiameter() = specs.dotSize.getSmallest()
 
     fun setColor(@ColorRes color: Int) {
         paint.color = getColor(color)
@@ -44,6 +47,6 @@ internal class Dot @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         val cx = (width / 2).toFloat()
         val cy = (height / 2).toFloat()
-        canvas?.drawCircle(cx, cy, (specs.diameter / 2).toFloat(), paint)
+        canvas?.drawCircle(cx, cy, (specs.getHeight() / 2).toFloat(), paint)
     }
 }

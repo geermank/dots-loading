@@ -1,5 +1,6 @@
 package com.geermank.dots.extensions
 
+import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.view.View
 import androidx.annotation.ColorRes
@@ -16,4 +17,8 @@ fun View.getColor(@ColorRes colorRes: Int): Int {
 
 fun View.getDimenPixelSize(@DimenRes dimenRes: Int): Int {
     return context.resources.getDimensionPixelSize(dimenRes)
+}
+
+fun Context.getDimenPixelSize(@DimenRes dimenRes: Int): Int {
+    return resources.getDimensionPixelSize(dimenRes)
 }

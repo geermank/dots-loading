@@ -1,6 +1,23 @@
 package com.geermank.dots.loading.view
 
+import com.geermank.dots.utils.ViewSize
+
 internal data class DotLoadingSpecs(
-    val size: Int,
-    var numberOfDots: Int = DEFAULT_NUMBER_OF_DOTS
-)
+    val containerSize: ViewSize,
+    val dotSize: ViewSize,
+    val numberOfDots: Int
+) {
+
+    fun getContainerWidthInPixels(): Int {
+        return containerSize.width
+    }
+
+    fun getContainerHeightInPixels(): Int {
+        return containerSize.height
+    }
+
+    fun getDotSize(): Int {
+        // are always equals anyway
+        return dotSize.getSmallest()
+    }
+}
