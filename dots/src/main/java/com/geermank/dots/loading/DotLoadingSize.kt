@@ -14,12 +14,10 @@ internal sealed class DotLoadingSize(
         val DEFAULT = LargeLoadingSize()
     }
 
-    @DimenRes
     fun getContainerSizeFromDimens(context: Context): Int {
         return context.getDimenPixelSize(containerSize)
     }
 
-    @DimenRes
     fun getDotSizeFromDimens(context: Context): Int {
         return context.getDimenPixelSize(dotSize)
     }
