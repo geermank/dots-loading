@@ -19,6 +19,10 @@ fun View.getDimenPixelSize(@DimenRes dimenRes: Int): Int {
     return context.resources.getDimensionPixelSize(dimenRes)
 }
 
+fun View.generateNewId() {
+    id = View.generateViewId()
+}
+
 fun Context.getDimenPixelSize(@DimenRes dimenRes: Int): Int {
     return resources.getDimensionPixelSize(dimenRes)
 }

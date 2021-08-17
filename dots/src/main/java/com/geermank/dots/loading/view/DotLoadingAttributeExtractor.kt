@@ -3,8 +3,6 @@ package com.geermank.dots.loading.view
 import android.content.Context
 import android.util.AttributeSet
 import com.geermank.dots.R
-import com.geermank.dots.loading.DotLoadingSize
-import com.geermank.dots.loading.DotLoadingSizeFactory
 import com.geermank.dots.loading.DotLoadingsFactoryMapper
 import com.geermank.dots.loading.DotsModifiersFactory
 import com.geermank.dots.utils.ViewSize

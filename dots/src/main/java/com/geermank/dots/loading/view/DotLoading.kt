@@ -3,9 +3,15 @@ package com.geermank.dots.loading.view
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
+import androidx.annotation.ColorRes
 import androidx.core.view.children
 import com.geermank.dots.dot.Dot
+import com.geermank.dots.extensions.generateNewId
+import com.geermank.dots.loading.DotLoadingsFactoryMapper
+import com.geermank.dots.loading.DotsLoadingSizeTypes
 import com.geermank.dots.loading.DotsModifiersFactory
+import com.geermank.dots.loading.DotsModifiersFactoryType
+import com.geermank.dots.utils.ViewSize
 
 internal const val DEFAULT_NUMBER_OF_DOTS = 3
 
@@ -15,7 +21,7 @@ class DotLoading @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    private val specs: DotLoadingSpecs
+    private var specs: DotLoadingSpecs
     private var dotsModifiersFactory: DotsModifiersFactory
 
     init {
@@ -29,6 +35,14 @@ class DotLoading @JvmOverloads constructor(
             )
             finish()
         }
+
+        createDotsAndAddItToParent()
+        calculateAndSetDotsPositions()
+    }
+
+    internal constructor(context: Context, specs: DotLoadingSpecs, dotsModifiersFactory: DotsModifiersFactory) : this(context) {
+        this.specs = specs
+        this.dotsModifiersFactory = dotsModifiersFactory
 
         createDotsAndAddItToParent()
         calculateAndSetDotsPositions()
@@ -67,6 +81,38 @@ class DotLoading @JvmOverloads constructor(
         val dotAnimation = dotsModifiersFactory.createDotsAnimation()
         children.forEachIndexed { index, view ->
             dotAnimation.animateDot(this, view as Dot, index)
+        }
+    }
+
+    class Builder(private val context: Context) {
+
+        private val dotLoadingSpecs = DotLoadingSpecs()
+        private var dotsModifierFactory: DotsModifiersFactory = DotsModifiersFactory.DEFAULT
+
+        fun setLoadingType(@DotsModifiersFactoryType index: Int): Builder {
+            dotsModifierFactory = DotLoadingsFactoryMapper.getByIndex(index)
+            return this
+        }
+
+        fun setDotColor(@ColorRes color: Int): Builder {
+            dotLoadingSpecs.dotColor = color
+            return this
+        }
+
+        fun setLoadingSize(@DotsLoadingSizeTypes index: Int): Builder {
+            val dotLoadingSize = DotLoadingSizeFactory.getFromIndexOrDefault(index)
+            dotLoadingSpecs.dotSize = ViewSize(dotLoadingSize.getDotSizeFromDimens(context))
+            dotLoadingSpecs.containerSize = ViewSize(dotLoadingSize.getContainerSizeFromDimens(context))
+            return this
+        }
+
+        fun setNumberOfDots(numberOfDots: Int): Builder {
+            dotLoadingSpecs.numberOfDots = numberOfDots
+            return this
+        }
+
+        fun build(): DotLoading {
+            return DotLoading(context, dotLoadingSpecs, dotsModifierFactory).also { it.generateNewId() }
         }
     }
 }

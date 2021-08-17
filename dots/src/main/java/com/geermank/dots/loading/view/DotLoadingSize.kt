@@ -1,9 +1,10 @@
-package com.geermank.dots.loading
+package com.geermank.dots.loading.view
 
 import android.content.Context
 import androidx.annotation.DimenRes
 import com.geermank.dots.R
 import com.geermank.dots.extensions.getDimenPixelSize
+import com.geermank.dots.loading.DotsLoadingSizeTypes
 
 internal sealed class DotLoadingSize(
     @DimenRes private val containerSize: Int,
@@ -29,11 +30,11 @@ internal class LargeLoadingSize : DotLoadingSize(R.dimen.large_dot_loading_size,
 internal object DotLoadingSizeFactory {
 
     private val values = mapOf(
-        Pair(0, SmallLoadingSize()),
-        Pair(1, LargeLoadingSize())
+        Pair(DotsLoadingSizeTypes.SMALL, SmallLoadingSize()),
+        Pair(DotsLoadingSizeTypes.LARGE, LargeLoadingSize())
     )
 
-    fun getFromIndexOrDefault(index: Int): DotLoadingSize {
+    fun getFromIndexOrDefault(@DotsLoadingSizeTypes index: Int): DotLoadingSize {
         return values.getOrElse(index) { DotLoadingSize.DEFAULT }
     }
 }

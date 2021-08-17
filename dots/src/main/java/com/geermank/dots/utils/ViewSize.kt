@@ -7,6 +7,8 @@ internal data class ViewSize(
     val height: Int
 ) {
 
+    constructor(viewSizeInPixels: Int) : this(viewSizeInPixels, viewSizeInPixels)
+
     fun getSmallest(): Int {
         return min(width, height)
     }

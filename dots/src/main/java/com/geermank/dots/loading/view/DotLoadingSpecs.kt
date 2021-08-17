@@ -5,10 +5,10 @@ import com.geermank.dots.dot.DotSpecs
 import com.geermank.dots.utils.ViewSize
 
 internal data class DotLoadingSpecs(
-    val containerSize: ViewSize,
-    val dotSize: ViewSize,
-    @ColorRes val dotColor: Int,
-    val numberOfDots: Int
+    var containerSize: ViewSize = ViewSize(0,0),
+    var dotSize: ViewSize = ViewSize(0,0),
+    @ColorRes var dotColor: Int = -1,
+    var numberOfDots: Int = DEFAULT_NUMBER_OF_DOTS
 ) {
 
     fun getContainerWidthInPixels(): Int {
