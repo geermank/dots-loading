@@ -7,6 +7,7 @@ import android.widget.FrameLayout
 import androidx.core.view.children
 import com.geermank.dots.R
 import com.geermank.dots.dot.Dot
+import com.geermank.dots.dot.DotSpecs
 import com.geermank.dots.extensions.getDimenPixelSize
 import com.geermank.dots.loading.DotLoadingSize
 import com.geermank.dots.loading.DotLoadingTypes
@@ -31,7 +32,8 @@ class DotLoading @JvmOverloads constructor(
             specs = DotLoadingSpecs(
                 getLoadingContainerSize(dotsModifiersFactory.requiresHorizontalContainer()),
                 getDotSize(),
-                getNumberOfDotsToDraw()
+                getDotsColor(),
+                getNumberOfDotsToDraw(DEFAULT_NUMBER_OF_DOTS)
             )
             finish()
         }
@@ -54,7 +56,7 @@ class DotLoading @JvmOverloads constructor(
 
     private fun createDotsAndAddItToParent() {
         for (index in 0 until specs.numberOfDots) {
-            val dot = Dot(context, specs.dotSize)
+            val dot = Dot(context, specs.createDotSpecs())
             addView(dot)
         }
     }

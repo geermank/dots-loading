@@ -2,6 +2,8 @@ package com.geermank.dots.loading.view
 
 import android.content.Context
 import android.util.AttributeSet
+import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
 import com.geermank.dots.R
 import com.geermank.dots.loading.DotLoadingSize
 import com.geermank.dots.loading.DotLoadingSizeFactory
@@ -44,12 +46,17 @@ internal class DotLoadingAttributeExtractor(
         return ViewSize(dotSizeInPixels, dotSizeInPixels)
     }
 
-    fun getNumberOfDotsToDraw(): Int {
+    fun getNumberOfDotsToDraw(default: Int): Int {
         return if (typedArray.hasValue(R.styleable.DotLoading_numberOfDots)) {
             typedArray.getInt(R.styleable.DotLoading_numberOfDots, DEFAULT_NUMBER_OF_DOTS)
         } else {
-            DEFAULT_NUMBER_OF_DOTS
+            default
         }
+    }
+
+
+    fun getDotsColor(): Int {
+        return typedArray.getResourceId(R.styleable.DotLoading_dotsColor, -1)
     }
 
     fun finish() {

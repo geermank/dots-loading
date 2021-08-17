@@ -13,6 +13,7 @@
             <enum name="linear" value="2"/>
             <enum name="bouncing" value="3"/>
         </attr>
+        <attr name="dotsColor" format="reference"/>
     </declare-styleable>
 
 </resources>
