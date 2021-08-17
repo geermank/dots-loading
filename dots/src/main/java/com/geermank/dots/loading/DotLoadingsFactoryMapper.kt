@@ -5,16 +5,16 @@ import com.geermank.dots.loading.circular.CircularProgressModifiersFactory
 import com.geermank.dots.loading.linear.LinearModifierFactory
 import com.geermank.dots.loading.orbit.OrbitModifiersFactory
 
-internal class DotLoadingsFactoryMapper {
+internal object DotLoadingsFactoryMapper {
 
-    private val styles = mapOf(
-        Pair(DotLoadingTypes.CIRCULAR, CircularProgressModifiersFactory()),
-        Pair(DotLoadingTypes.ORBIT, OrbitModifiersFactory()),
-        Pair(DotLoadingTypes.LINEAR, LinearModifierFactory()),
-        Pair(DotLoadingTypes.BOUNCING, BouncingModifierFactory())
+    private val modifierFactoriesMap = mapOf(
+        Pair(0, CircularProgressModifiersFactory()),
+        Pair(1, OrbitModifiersFactory()),
+        Pair(2, LinearModifierFactory()),
+        Pair(3, BouncingModifierFactory())
     )
 
-    fun getByKey(key: DotLoadingTypes): DotsModifiersFactory {
-        return styles[key] ?: NoModifierFactory()
+    fun getByIndex(index: Int): DotsModifiersFactory {
+        return modifierFactoriesMap.getOrElse(index) { DotsModifiersFactory.DEFAULT }
     }
 }

@@ -8,8 +8,6 @@
     <com.geermank.dots.loading.view.DotLoading
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:numberOfDots="5"
-        app:loadingSize="small"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

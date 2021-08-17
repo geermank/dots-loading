@@ -1,19 +1,11 @@
 package com.geermank.dots.loading.view
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.core.view.children
-import com.geermank.dots.R
 import com.geermank.dots.dot.Dot
-import com.geermank.dots.dot.DotSpecs
-import com.geermank.dots.extensions.getDimenPixelSize
-import com.geermank.dots.loading.DotLoadingSize
-import com.geermank.dots.loading.DotLoadingTypes
-import com.geermank.dots.loading.DotLoadingsFactoryMapper
 import com.geermank.dots.loading.DotsModifiersFactory
-import com.geermank.dots.utils.ViewSize
 
 internal const val DEFAULT_NUMBER_OF_DOTS = 3
 

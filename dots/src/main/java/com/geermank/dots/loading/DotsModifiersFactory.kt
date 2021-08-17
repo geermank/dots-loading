@@ -1,35 +1,14 @@
 package com.geermank.dots.loading
 
-import com.geermank.dots.dot.Dot
-import com.geermank.dots.loading.view.DotLoading
-import com.geermank.dots.loading.view.DotLoadingSpecs
-import com.geermank.dots.utils.Coordinates
+import com.geermank.dots.loading.circular.CircularProgressModifiersFactory
 
 internal interface DotsModifiersFactory {
+
+    companion object {
+        val DEFAULT = CircularProgressModifiersFactory()
+    }
+
     fun createDotsAnimation(): DotsAnimation
     fun createDotsPositionDecider(): DotPositionDecider
     fun requiresHorizontalContainer(): Boolean
-}
-
-internal class NoModifierFactory : DotsModifiersFactory {
-    override fun createDotsAnimation(): DotsAnimation {
-        return object : DotsAnimation {
-            override fun animateDot(container: DotLoading, dot: Dot, dotIndex: Int) {
-                // does nothing ja
-            }
-        }
-    }
-
-    override fun createDotsPositionDecider(): DotPositionDecider {
-        return object : DotPositionDecider {
-            override fun getPosition(dotIndex: Int, dot: Dot, dotLoadingSpecs: DotLoadingSpecs): Coordinates {
-                // just some default value
-                return Coordinates(0.0, 0.0)
-            }
-        }
-    }
-
-    override fun requiresHorizontalContainer(): Boolean {
-        return false
-    }
 }

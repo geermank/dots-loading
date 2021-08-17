@@ -8,9 +8,7 @@
     <com.geermank.dots.loading.view.DotLoading
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:numberOfDots="3"
         app:loadingType="bouncing"
-        app:dotsColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

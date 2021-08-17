@@ -2,12 +2,9 @@ package com.geermank.dots.loading.view
 
 import android.content.Context
 import android.util.AttributeSet
-import androidx.annotation.ColorRes
-import androidx.core.content.ContextCompat
 import com.geermank.dots.R
 import com.geermank.dots.loading.DotLoadingSize
 import com.geermank.dots.loading.DotLoadingSizeFactory
-import com.geermank.dots.loading.DotLoadingTypes
 import com.geermank.dots.loading.DotLoadingsFactoryMapper
 import com.geermank.dots.loading.DotsModifiersFactory
 import com.geermank.dots.utils.ViewSize
@@ -20,9 +17,8 @@ internal class DotLoadingAttributeExtractor(
     private val typedArray = context.obtainStyledAttributes(attrs, R.styleable.DotLoading)
 
     fun createDotsModifierFactory(): DotsModifiersFactory {
-        val valuesMapper = DotLoadingsFactoryMapper()
-        val key = DotLoadingTypes.values()[typedArray.getInt(R.styleable.DotLoading_loadingType, 0)]
-        return valuesMapper.getByKey(key)
+        val modifiersFactoryIndex = typedArray.getInt(R.styleable.DotLoading_loadingType, 0)
+        return DotLoadingsFactoryMapper.getByIndex(modifiersFactoryIndex)
     }
 
     fun getLoadingContainerSize(requiresHorizontalContainer: Boolean): ViewSize {
@@ -47,11 +43,7 @@ internal class DotLoadingAttributeExtractor(
     }
 
     fun getNumberOfDotsToDraw(default: Int): Int {
-        return if (typedArray.hasValue(R.styleable.DotLoading_numberOfDots)) {
-            typedArray.getInt(R.styleable.DotLoading_numberOfDots, DEFAULT_NUMBER_OF_DOTS)
-        } else {
-            default
-        }
+        return typedArray.getInt(R.styleable.DotLoading_numberOfDots, default)
     }
 
 
