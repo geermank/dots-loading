@@ -8,6 +8,9 @@
     <com.geermank.dots.loading.view.DotLoading
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:loadingType="tik_tok"
+        app:numberOfDots="2"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

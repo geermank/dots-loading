@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.annotation.ColorRes
 import androidx.core.view.children
+import com.geermank.dots.R
 import com.geermank.dots.dot.Dot
 import com.geermank.dots.extensions.generateNewId
 import com.geermank.dots.loading.DotLoadingsFactoryMapper
@@ -62,7 +63,11 @@ class DotLoading @JvmOverloads constructor(
 
     private fun createDotsAndAddItToParent() {
         for (index in 0 until specs.numberOfDots) {
-            val dot = Dot(context, specs.createDotSpecs())
+            val dot = Dot(context, specs.createDotSpecs()).also {
+                if (index == 1) {
+                    it.setColor(android.R.color.black)
+                }
+            }
             addView(dot)
         }
     }

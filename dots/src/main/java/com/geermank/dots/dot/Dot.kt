@@ -17,7 +17,10 @@ internal class Dot @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
 
     private var specs: DotSpecs = DotSpecs()
-    private val paint = Paint(Paint.ANTI_ALIAS_FLAG).also { setDotPaintColor(it) }
+    private val paint = Paint(Paint.ANTI_ALIAS_FLAG).also {
+        it.style = Paint.Style.FILL
+        setDotPaintColor(it)
+    }
 
     constructor(context: Context, dotSpecs: DotSpecs) : this(context) {
         specs = dotSpecs
