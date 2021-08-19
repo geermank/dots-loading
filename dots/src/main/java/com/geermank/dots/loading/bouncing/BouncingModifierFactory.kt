@@ -1,6 +1,7 @@
 package com.geermank.dots.loading.bouncing
 
 import com.geermank.dots.loading.DotPositionDecider
+import com.geermank.dots.loading.DotSpecsOverrider
 import com.geermank.dots.loading.DotsAnimation
 import com.geermank.dots.loading.DotsModifiersFactory
 

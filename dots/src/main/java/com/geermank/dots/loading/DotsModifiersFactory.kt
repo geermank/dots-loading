@@ -8,7 +8,11 @@ internal interface DotsModifiersFactory {
         val DEFAULT = CircularProgressModifiersFactory()
     }
 
+    fun requiresHorizontalContainer(): Boolean
+
     fun createDotsAnimation(): DotsAnimation
     fun createDotsPositionDecider(): DotPositionDecider
-    fun requiresHorizontalContainer(): Boolean
+    fun createDotSpecsOverrider(): DotSpecsOverrider? {
+        return null
+    }
 }

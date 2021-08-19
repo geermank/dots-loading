@@ -3,13 +3,16 @@ package com.geermank.dots.loading.view
 import android.content.Context
 import android.util.AttributeSet
 import com.geermank.dots.R
+import com.geermank.dots.dot.color.DotPainter
+import com.geermank.dots.dot.color.MultipleColorsDotPainter
+import com.geermank.dots.dot.color.SingleColorDotPainter
 import com.geermank.dots.loading.DotLoadingsFactoryMapper
 import com.geermank.dots.loading.DotsModifiersFactory
 import com.geermank.dots.utils.ViewSize
 
 internal class DotLoadingAttributeExtractor(
-    attrs: AttributeSet?,
-    private val context: Context
+        attrs: AttributeSet?,
+        private val context: Context
 ) {
 
     private val typedArray = context.obtainStyledAttributes(attrs, R.styleable.DotLoading)
@@ -44,9 +47,14 @@ internal class DotLoadingAttributeExtractor(
         return typedArray.getInt(R.styleable.DotLoading_numberOfDots, default)
     }
 
-
-    fun getDotsColor(): Int {
-        return typedArray.getResourceId(R.styleable.DotLoading_dotsColor, -1)
+    fun getDotColorPainter(): DotPainter {
+        val multipleColorsArray = getDotsColors()
+        val primaryDotsColor = getDotsPrimaryColorColor()
+        return if (multipleColorsArray == null || multipleColorsArray.size == 1) {
+            SingleColorDotPainter(primaryDotsColor)
+        } else {
+            MultipleColorsDotPainter(primaryDotsColor, multipleColorsArray)
+        }
     }
 
     fun finish() {
@@ -56,5 +64,23 @@ internal class DotLoadingAttributeExtractor(
     private fun getLoadingSize(): DotLoadingSize {
         val loadingSizeIndex = typedArray.getInt(R.styleable.DotLoading_loadingSize, -1)
         return DotLoadingSizeFactory.getFromIndexOrDefault(loadingSizeIndex)
+    }
+
+    private fun getDotsPrimaryColorColor(): Int? {
+        val primaryDotColor = typedArray.getResourceId(R.styleable.DotLoading_dotsColor, -1)
+        return if (primaryDotColor == -1) {
+            null
+        } else {
+            primaryDotColor
+        }
+    }
+
+    private fun getDotsColors(): IntArray? {
+        val colorsArrayId = typedArray.getResourceId(R.styleable.DotLoading_dotsColorsArray, -1)
+        return if (colorsArrayId == -1) {
+            null
+        } else {
+            typedArray.resources.getIntArray(colorsArrayId)
+        }
     }
 }

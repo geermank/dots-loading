@@ -5,23 +5,30 @@ import com.geermank.dots.dot.Dot
 import com.geermank.dots.loading.DotsAnimation
 import com.geermank.dots.loading.view.DotLoading
 
-private const val FOREGROUND_DOT_ELEVATION = 4f
+private const val BACKGROUND_DOT_Z_AXIS = 0f
+private const val FOREGROUND_DOT_Z_AXIS = 100f
 
+/**
+ * This animation is thought to be run with two and only two dots. That's why we will
+ * always talk about index 0 to refer to the first dot (the one that stars in the background)
+ * and index 1 to refer to the second dot (the one that stars in the foreground)
+ */
 internal class TikTokDotAnimation : DotsAnimation {
 
-    private val sumOperation: (Double, Double) -> Double = { center, translation ->
+    private val calculateRightXFromCenter: (Double, Double) -> Double = { center, translation ->
         center + translation
     }
-    private val subtractOperation: (Double, Double) -> Double = { center, translation ->
+    private val calculateLeftXFromCenter: (Double, Double) -> Double = { center, translation ->
         center - translation
     }
 
     override fun animateDot(container: DotLoading, dot: Dot, dotIndex: Int) {
         // remember that this animation only works with two dots, not less no more
         if (dotIndex == 0) {
-            runTranslationAnimation(container, dot, subtractOperation, sumOperation, false)
+            runTranslationAnimation(container, dot, calculateLeftXFromCenter, calculateRightXFromCenter)
         } else if (dotIndex == 1) {
-            runTranslationAnimation(container, dot, sumOperation, subtractOperation, true)
+            modifyZAxis(dot, FOREGROUND_DOT_Z_AXIS)
+            runTranslationAnimation(container, dot, calculateRightXFromCenter, calculateLeftXFromCenter)
         }
     }
 
@@ -29,8 +36,7 @@ internal class TikTokDotAnimation : DotsAnimation {
         container: DotLoading,
         dot: Dot,
         originXOperation: (Double, Double) -> Double,
-        targetXOperation: (Double, Double) -> Double,
-        startsOnFront: Boolean
+        targetXOperation: (Double, Double) -> Double
     ) {
         val center = getTheCenterOfTheContainer(container)
         val translationAmount = dot.getDiameter().div(2.0)
@@ -38,53 +44,40 @@ internal class TikTokDotAnimation : DotsAnimation {
         val originX = originXOperation(center, translationAmount)
         val targetX = targetXOperation(center, translationAmount)
 
-        val startZ = if (startsOnFront) {
-            100f
-        } else {
-            0f
-        }
-
-        val endZ = if (startsOnFront) {
-            0f
-        } else {
-            100f
-        }
-
-        runAnimation(dot, originX.toFloat(), targetX.toFloat(), startZ, endZ)
+        runAnimation(dot, originX.toFloat(), targetX.toFloat())
     }
 
-    private fun runAnimation(dot: Dot, startPositionX: Float, endPositionX: Float, startPositionZ: Float, endPositionZ: Float) {
+    private fun runAnimation(dot: Dot, startPositionX: Float, endPositionX: Float) {
         ValueAnimator.ofFloat(startPositionX , endPositionX).apply {
             addUpdateListener { animation ->
                 val currentValue = animation.animatedValue as Float
                 dot.translationX = currentValue
             }
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationRepeat(animation: Animator) {
+                    invertZAxisValue(dot)
+                }
+            })
             duration = 500
             repeatMode = ValueAnimator.REVERSE
             repeatCount = ValueAnimator.INFINITE
             start()
         }
-
-        /*val anim2 = ValueAnimator.ofFloat(startPositionZ , endPositionZ).apply {
-            addUpdateListener { animation ->
-                val currentValue = animation.animatedValue as Float
-                dot.translationZ = currentValue
-            }
-            duration = 250
-            repeatMode = ValueAnimator.REVERSE
-            repeatCount = ValueAnimator.INFINITE
-        }*/
-
-        /*val anim2 = ObjectAnimator.ofFloat(dot, View.TRANSLATION_Z, startPositionZ, endPositionZ)
-        anim2.duration = 500
-        anim2.repeatMode = ObjectAnimator.REVERSE
-        anim2.repeatCount = ObjectAnimator.INFINITE*/
-
-        /*val set = AnimatorSet()
-        set.playTogether(anim1, anim2)
-        set.start()*/
     }
 
     private fun getTheCenterOfTheContainer(container: DotLoading) =
         container.getSizeInPixels().getSmallest() / 2.0
+
+    private fun invertZAxisValue(dot: Dot) {
+        if (dot.z == BACKGROUND_DOT_Z_AXIS) {
+            modifyZAxis(dot, FOREGROUND_DOT_Z_AXIS)
+        } else {
+            modifyZAxis(dot, BACKGROUND_DOT_Z_AXIS)
+        }
+    }
+
+    private fun modifyZAxis(dot: Dot, targetZ: Float) {
+        dot.z = targetZ
+        dot.translationZ = targetZ
+    }
 }

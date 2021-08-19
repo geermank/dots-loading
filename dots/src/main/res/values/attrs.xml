@@ -15,6 +15,7 @@
             <enum name="tik_tok" value="4"/>
         </attr>
         <attr name="dotsColor" format="reference"/>
+        <attr name="dotsColorsArray" format="reference"/>
     </declare-styleable>
 
 </resources>
