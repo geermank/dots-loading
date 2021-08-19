@@ -14,7 +14,8 @@ class MenuFragment : Fragment() {
         fun showCircularProgress()
         fun showOrbitProgress()
         fun showLinearProgress()
-        fun showBounceLoading()
+        fun showBounceProgress()
+        fun showTikTokProgress()
     }
 
     private lateinit var listener: MenuFragmentListener
@@ -25,7 +26,7 @@ class MenuFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.menu_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_menu, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,7 +43,11 @@ class MenuFragment : Fragment() {
         }
 
         view.findViewById<MaterialButton>(R.id.bouncing_progress).apply {
-            setOnClickListener { listener.showBounceLoading() }
+            setOnClickListener { listener.showBounceProgress() }
+        }
+
+        view.findViewById<MaterialButton>(R.id.tik_tok_progress).apply {
+            setOnClickListener { listener.showTikTokProgress() }
         }
     }
 }

@@ -1,7 +1,6 @@
 package com.geermank.dots.dot.color
 
 import androidx.annotation.ColorRes
-import com.geermank.dots.dot.Dot
 import com.geermank.dots.utils.Constants.NO_COLOR
 
 internal class SingleColorDotPainter(@ColorRes private val colorId: Int?) : DotPainter {

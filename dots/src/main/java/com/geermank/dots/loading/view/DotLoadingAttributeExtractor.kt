@@ -4,15 +4,14 @@ import android.content.Context
 import android.util.AttributeSet
 import com.geermank.dots.R
 import com.geermank.dots.dot.color.DotPainter
-import com.geermank.dots.dot.color.MultipleColorsDotPainter
-import com.geermank.dots.dot.color.SingleColorDotPainter
+import com.geermank.dots.dot.color.DotPainterCreator
 import com.geermank.dots.loading.DotLoadingsFactoryMapper
 import com.geermank.dots.loading.DotsModifiersFactory
 import com.geermank.dots.utils.ViewSize
 
 internal class DotLoadingAttributeExtractor(
-        attrs: AttributeSet?,
-        private val context: Context
+    attrs: AttributeSet?,
+    private val context: Context
 ) {
 
     private val typedArray = context.obtainStyledAttributes(attrs, R.styleable.DotLoading)
@@ -48,13 +47,9 @@ internal class DotLoadingAttributeExtractor(
     }
 
     fun getDotColorPainter(): DotPainter {
-        val multipleColorsArray = getDotsColors()
         val primaryDotsColor = getDotsPrimaryColorColor()
-        return if (multipleColorsArray == null || multipleColorsArray.size == 1) {
-            SingleColorDotPainter(primaryDotsColor)
-        } else {
-            MultipleColorsDotPainter(primaryDotsColor, multipleColorsArray)
-        }
+        val multipleColorsArray = getDotsMultipleColors()
+        return DotPainterCreator.create(primaryDotsColor, multipleColorsArray)
     }
 
     fun finish() {
@@ -75,12 +70,22 @@ internal class DotLoadingAttributeExtractor(
         }
     }
 
-    private fun getDotsColors(): IntArray? {
+    private fun getDotsMultipleColors(): IntArray? {
         val colorsArrayId = typedArray.getResourceId(R.styleable.DotLoading_dotsColorsArray, -1)
         return if (colorsArrayId == -1) {
             null
         } else {
-            typedArray.resources.getIntArray(colorsArrayId)
+            val typedArray = typedArray.resources.obtainTypedArray(colorsArrayId)
+            val colorsArray = IntArray(typedArray.length())
+
+            for (index in 0 until typedArray.length()) {
+                val colorId = typedArray.getResourceId(index, -1)
+                colorsArray[index] = colorId
+            }
+
+            typedArray.recycle()
+
+            colorsArray
         }
     }
 }

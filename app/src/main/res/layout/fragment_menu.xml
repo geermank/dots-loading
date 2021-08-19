@@ -35,5 +35,10 @@
             android:layout_height="wrap_content"
             android:text="Bounce progress"/>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/tik_tok_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TikTok progress"/>
     </LinearLayout>
 </ScrollView>
