@@ -31,10 +31,10 @@ class DotLoading : FrameLayout {
         attributeExtractor.run {
             dotsModifiersFactory = createDotsModifierFactory()
             specs = DotLoadingSpecs(
-                    getLoadingContainerSize(dotsModifiersFactory.requiresHorizontalContainer()),
-                    getDotSize(),
-                    getDotColorPainter(),
-                    getNumberOfDotsToDraw(DEFAULT_NUMBER_OF_DOTS)
+                getLoadingContainerSize(dotsModifiersFactory.requiresHorizontalContainer()),
+                getDotSize(),
+                getDotColorPainter(),
+                getNumberOfDotsToDraw(DEFAULT_NUMBER_OF_DOTS)
             )
             finish()
         }
