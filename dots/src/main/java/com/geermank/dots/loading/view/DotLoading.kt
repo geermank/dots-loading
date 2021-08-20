@@ -6,7 +6,6 @@ import android.widget.FrameLayout
 import androidx.annotation.ArrayRes
 import androidx.annotation.ColorRes
 import androidx.core.view.children
-import com.geermank.dots.R
 import com.geermank.dots.dot.Dot
 import com.geermank.dots.dot.color.MultipleColorsDotPainter
 import com.geermank.dots.dot.color.SingleColorDotPainter
@@ -19,32 +18,32 @@ import com.geermank.dots.utils.ViewSize
 
 internal const val DEFAULT_NUMBER_OF_DOTS = 3
 
-class DotLoading @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr) {
+class DotLoading : FrameLayout {
 
     private var specs: DotLoadingSpecs
     private var dotsModifiersFactory: DotsModifiersFactory
 
-    init {
-        DotLoadingAttributeExtractor(attrs, context).run {
+    constructor(context: Context) : this(context, null)
+    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
+
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        val attributeExtractor = DotLoadingAttributeExtractor(attrs, context)
+        attributeExtractor.run {
             dotsModifiersFactory = createDotsModifierFactory()
             specs = DotLoadingSpecs(
-                getLoadingContainerSize(dotsModifiersFactory.requiresHorizontalContainer()),
-                getDotSize(),
-                getDotColorPainter(),
-                getNumberOfDotsToDraw(DEFAULT_NUMBER_OF_DOTS)
+                    getLoadingContainerSize(dotsModifiersFactory.requiresHorizontalContainer()),
+                    getDotSize(),
+                    getDotColorPainter(),
+                    getNumberOfDotsToDraw(DEFAULT_NUMBER_OF_DOTS)
             )
             finish()
         }
         makeInitialSetUp()
     }
 
-    internal constructor(context: Context, specs: DotLoadingSpecs, dotsModifiersFactory: DotsModifiersFactory) : this(context) {
-        this.specs = specs
+    internal constructor(context: Context, specs: DotLoadingSpecs, dotsModifiersFactory: DotsModifiersFactory) : super(context) {
         this.dotsModifiersFactory = dotsModifiersFactory
+        this.specs = specs
         makeInitialSetUp()
     }
 

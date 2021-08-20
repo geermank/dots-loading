@@ -15,6 +15,10 @@ class MainActivity : AppCompatActivity(), MenuFragment.MenuFragmentListener {
                 .commit()
     }
 
+    override fun showDynamicLoading() {
+        replaceFragment(DynamicLoadingFragment())
+    }
+
     override fun showCircularProgress() {
         replaceFragment(CircularProgressFragment())
     }

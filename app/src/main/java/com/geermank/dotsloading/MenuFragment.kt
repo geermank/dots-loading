@@ -11,6 +11,7 @@ import com.google.android.material.button.MaterialButton
 class MenuFragment : Fragment() {
 
     interface MenuFragmentListener {
+        fun showDynamicLoading()
         fun showCircularProgress()
         fun showOrbitProgress()
         fun showLinearProgress()
@@ -30,6 +31,10 @@ class MenuFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        view.findViewById<MaterialButton>(R.id.dynamic_loading).apply {
+            setOnClickListener { listener.showDynamicLoading() }
+        }
+
         view.findViewById<MaterialButton>(R.id.circular_progress).apply {
             setOnClickListener { listener.showCircularProgress() }
         }

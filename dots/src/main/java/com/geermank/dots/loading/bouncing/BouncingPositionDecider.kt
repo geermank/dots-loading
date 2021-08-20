@@ -26,7 +26,7 @@ internal class BouncingPositionDecider : DotPositionDecider {
         val middleIndex = (dotLoadingSpecs.numberOfDots / 2) - getIndexOffset(dotLoadingSpecs.numberOfDots)
         val indexRelativeToTheCenter = dotIndex - middleIndex
         return dotLoadingSpecs.getContainerWidthInPixels() / 2.0 +
-                indexRelativeToTheCenter * (dot.getDiameter() + 16.0) -
+                indexRelativeToTheCenter * (dot.getDiameter() + 16.0) - // add some margin between the dots
                 getXOffset(dotLoadingSpecs.numberOfDots, dot)
     }
 

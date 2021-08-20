@@ -10,4 +10,18 @@
         <item>@color/tik_tok_red</item>
         <item>@color/tik_tok_turqoise</item>
     </array>
+
+    <array name="loading_types">
+        <item>Circular</item>
+        <item>Orbits</item>
+        <item>Linear</item>
+        <item>Bounce</item>
+        <item>TikTok</item>
+    </array>
+
+    <array name="loading_size">
+        <item>Small</item>
+        <item>Large</item>
+    </array>
+
 </resources>
