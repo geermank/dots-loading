@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="dot_multiple_colors">
+        <item>@android:color/holo_red_light</item>
+        <item>@android:color/black</item>
+        <item>@color/teal_700</item>
+    </array>
+
+    <array name="tik_tok_dot_colors">
+        <item>@color/tik_tok_red</item>
+        <item>@color/tik_tok_turqoise</item>
+    </array>
+
+    <array name="loading_types">
+        <item>Circular</item>
+        <item>Orbits</item>
+        <item>Linear</item>
+        <item>Bounce</item>
+        <item>TikTok</item>
+    </array>
+
+    <array name="loading_size">
+        <item>Small</item>
+        <item>Large</item>
+    </array>
+
+</resources>

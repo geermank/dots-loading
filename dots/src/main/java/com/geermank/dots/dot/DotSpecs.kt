@@ -1,9 +1,8 @@
 package com.geermank.dots.dot
 
 import androidx.annotation.ColorRes
+import com.geermank.dots.utils.Constants.NO_COLOR
 import com.geermank.dots.utils.ViewSize
-
-const val NO_COLOR = -1
 
 internal data class DotSpecs(
     var dotSize: ViewSize = ViewSize(0, 0),

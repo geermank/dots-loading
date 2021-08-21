@@ -11,10 +11,12 @@ import com.google.android.material.button.MaterialButton
 class MenuFragment : Fragment() {
 
     interface MenuFragmentListener {
+        fun showDynamicLoading()
         fun showCircularProgress()
         fun showOrbitProgress()
         fun showLinearProgress()
-        fun showBounceLoading()
+        fun showBounceProgress()
+        fun showTikTokProgress()
     }
 
     private lateinit var listener: MenuFragmentListener
@@ -25,10 +27,14 @@ class MenuFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.menu_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_menu, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        view.findViewById<MaterialButton>(R.id.dynamic_loading).apply {
+            setOnClickListener { listener.showDynamicLoading() }
+        }
+
         view.findViewById<MaterialButton>(R.id.circular_progress).apply {
             setOnClickListener { listener.showCircularProgress() }
         }
@@ -42,7 +48,11 @@ class MenuFragment : Fragment() {
         }
 
         view.findViewById<MaterialButton>(R.id.bouncing_progress).apply {
-            setOnClickListener { listener.showBounceLoading() }
+            setOnClickListener { listener.showBounceProgress() }
+        }
+
+        view.findViewById<MaterialButton>(R.id.tik_tok_progress).apply {
+            setOnClickListener { listener.showTikTokProgress() }
         }
     }
 }

@@ -2,6 +2,7 @@ package com.geermank.dotsloading
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 
 class MainActivity : AppCompatActivity(), MenuFragment.MenuFragmentListener {
 
@@ -14,30 +15,33 @@ class MainActivity : AppCompatActivity(), MenuFragment.MenuFragmentListener {
                 .commit()
     }
 
+    override fun showDynamicLoading() {
+        replaceFragment(DynamicLoadingFragment())
+    }
+
     override fun showCircularProgress() {
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, CircularProgressFragment())
-                .addToBackStack(null)
-                .commit()
+        replaceFragment(CircularProgressFragment())
     }
 
     override fun showOrbitProgress() {
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, OrbitProgressFragment())
-                .addToBackStack(null)
-                .commit()
+        replaceFragment(OrbitProgressFragment())
     }
 
     override fun showLinearProgress() {
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, LinearProgressFragment())
-                .addToBackStack(null)
-                .commit()
+        replaceFragment(LinearProgressFragment())
     }
 
-    override fun showBounceLoading() {
+    override fun showBounceProgress() {
+        replaceFragment(BounceProgressFragment())
+    }
+
+    override fun showTikTokProgress() {
+        replaceFragment(TikTokDotLoadingFragment())
+    }
+
+    private fun replaceFragment(newFragment: Fragment) {
         supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, BounceProgressFragment())
+                .replace(R.id.fragment_container, newFragment)
                 .addToBackStack(null)
                 .commit()
     }

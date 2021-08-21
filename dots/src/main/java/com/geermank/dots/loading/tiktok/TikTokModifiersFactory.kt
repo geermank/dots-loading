@@ -1,18 +1,22 @@
-package com.geermank.dots.loading.bouncing
+package com.geermank.dots.loading.tiktok
 
 import com.geermank.dots.loading.DotPositionDecider
 import com.geermank.dots.loading.DotSpecsOverrider
 import com.geermank.dots.loading.DotsAnimation
 import com.geermank.dots.loading.DotsModifiersFactory
 
-internal class BouncingModifierFactory : DotsModifiersFactory {
+internal class TikTokModifiersFactory : DotsModifiersFactory {
 
     override fun createDotsAnimation(): DotsAnimation {
-        return BouncingDotAnimation()
+        return TikTokDotAnimation()
     }
 
     override fun createDotsPositionDecider(): DotPositionDecider {
-        return BouncingPositionDecider()
+        return TikTokDotPositionDecider()
+    }
+
+    override fun createDotSpecsOverrider(): DotSpecsOverrider {
+        return TikTokDotSpecsOverrider()
     }
 
     override fun requiresHorizontalContainer(): Boolean {

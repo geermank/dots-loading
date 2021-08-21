@@ -12,8 +12,10 @@
             <enum name="orbit" value="1"/>
             <enum name="linear" value="2"/>
             <enum name="bouncing" value="3"/>
+            <enum name="tik_tok" value="4"/>
         </attr>
         <attr name="dotsColor" format="reference"/>
+        <attr name="dotsColorsArray" format="reference"/>
     </declare-styleable>
 
 </resources>

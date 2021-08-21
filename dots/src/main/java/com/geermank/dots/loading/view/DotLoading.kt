@@ -3,9 +3,12 @@ package com.geermank.dots.loading.view
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
+import androidx.annotation.ArrayRes
 import androidx.annotation.ColorRes
 import androidx.core.view.children
 import com.geermank.dots.dot.Dot
+import com.geermank.dots.dot.color.MultipleColorsDotPainter
+import com.geermank.dots.dot.color.SingleColorDotPainter
 import com.geermank.dots.extensions.generateNewId
 import com.geermank.dots.loading.DotLoadingsFactoryMapper
 import com.geermank.dots.loading.DotsLoadingSizeTypes
@@ -15,37 +18,33 @@ import com.geermank.dots.utils.ViewSize
 
 internal const val DEFAULT_NUMBER_OF_DOTS = 3
 
-class DotLoading @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr) {
+class DotLoading : FrameLayout {
 
     private var specs: DotLoadingSpecs
     private var dotsModifiersFactory: DotsModifiersFactory
 
-    init {
-        DotLoadingAttributeExtractor(attrs, context).run {
+    constructor(context: Context) : this(context, null)
+    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
+
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        val attributeExtractor = DotLoadingAttributeExtractor(attrs, context)
+        attributeExtractor.run {
             dotsModifiersFactory = createDotsModifierFactory()
             specs = DotLoadingSpecs(
                 getLoadingContainerSize(dotsModifiersFactory.requiresHorizontalContainer()),
                 getDotSize(),
-                getDotsColor(),
+                getDotColorPainter(),
                 getNumberOfDotsToDraw(DEFAULT_NUMBER_OF_DOTS)
             )
             finish()
         }
-
-        createDotsAndAddItToParent()
-        calculateAndSetDotsPositions()
+        makeInitialSetUp()
     }
 
-    internal constructor(context: Context, specs: DotLoadingSpecs, dotsModifiersFactory: DotsModifiersFactory) : this(context) {
-        this.specs = specs
+    internal constructor(context: Context, specs: DotLoadingSpecs, dotsModifiersFactory: DotsModifiersFactory) : super(context) {
         this.dotsModifiersFactory = dotsModifiersFactory
-
-        createDotsAndAddItToParent()
-        calculateAndSetDotsPositions()
+        this.specs = specs
+        makeInitialSetUp()
     }
 
     internal fun getSizeInPixels() = specs.containerSize
@@ -60,9 +59,19 @@ class DotLoading @JvmOverloads constructor(
         animateDots()
     }
 
+    private fun makeInitialSetUp() {
+        overrideCalculatedSpecsIfNeeded()
+        createDotsAndAddItToParent()
+        calculateAndSetDotsPositions()
+    }
+
+    private fun overrideCalculatedSpecsIfNeeded() {
+        dotsModifiersFactory.createDotSpecsOverrider()?.overrideSpecs(specs)
+    }
+
     private fun createDotsAndAddItToParent() {
         for (index in 0 until specs.numberOfDots) {
-            val dot = Dot(context, specs.createDotSpecs())
+            val dot = Dot(context, specs.createDotSpecs(index))
             addView(dot)
         }
     }
@@ -94,8 +103,13 @@ class DotLoading @JvmOverloads constructor(
             return this
         }
 
-        fun setDotColor(@ColorRes color: Int): Builder {
-            dotLoadingSpecs.dotColor = color
+        fun setDotPrimaryColor(@ColorRes color: Int): Builder {
+            dotLoadingSpecs.dotPainter = SingleColorDotPainter(color)
+            return this
+        }
+
+        fun setDotMultipleColors(@ColorRes primaryColor: Int?, @ArrayRes colors: IntArray): Builder {
+            dotLoadingSpecs.dotPainter = MultipleColorsDotPainter(primaryColor, colors)
             return this
         }
 
