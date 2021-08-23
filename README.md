@@ -30,7 +30,7 @@ And then add this line in the `build.gradle` file of your module:
 
 You can add this loading in your xml file or programmatically.
 
-### Adding this loading in your xml
+### Adding the loading in your xml
 
 You don't need to specify any attribute to use it, this view will just take default values if you don't:
 
@@ -89,4 +89,17 @@ Here you have an example of all the attributes combined:
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"/>
+```
+
+### Adding the loading programmatically
+
+The `DotLoading` class has a Builder class that lets you create an instance of this view. Here you have an example of how to use it:
+```
+val loading = DotLoading.Builder(requireContext())
+    .setLoadingType(DotLoadingTypes.LINEAR)
+    .setLoadingSize(DotsLoadingSizeTypes.SMALL)
+    .setNumberOfDots(5)
+    .setDotColor(R.color.black)
+    .build()
+container.addView(loading)
 ```
