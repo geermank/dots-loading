@@ -54,7 +54,7 @@ You can customize your loading using the following attributes:
 
 `dotsColor`: this is the primary color of your loading. The dots will be painted with it unless you specify a color array.
 
-`dotsColorsArray`: this attribute lets you paint each dot with a different color. The order of the array is considered to paint the dot; this means that the first color will paint the first dot, the second color will paint the second dot, and so on. If you have more dots than colors, the rest of the dots will be painted with the color specified in the attribute `dotsColor`. If you don't set this color, the rest of the dots will be painted with your primary color
+`dotsColorsArray`: this attribute lets you paint each dot with a different color. The order of the array is important since it is considered when we do the painting; this means that the first color will be used to paint the first dot, the second color will be used the paint the second dot, and so on. If you have more dots than colors, the rest of the dots will be painted with the color specified in the attribute `dotsColor`. If you don't set this color, the rest of the dots will be painted with your primary color
 
 `loadingType`: the type of animation the dots will suffer. You can choose one of the following options:
 1. circular
