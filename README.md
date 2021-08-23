@@ -99,7 +99,7 @@ val loading = DotLoading.Builder(requireContext())
     .setLoadingType(DotLoadingTypes.LINEAR)
     .setLoadingSize(DotsLoadingSizeTypes.SMALL)
     .setNumberOfDots(5)
-    .setDotColor(R.color.black)
+    .setDotPrimaryColor(R.color.black)
     .build()
 container.addView(loading)
 ```
