@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/black">
 
-    <com.geermank.dots.loading.view.DotLoading
+    <com.geermank.dots.loading.view.DotLoadingView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:loadingType="tik_tok"

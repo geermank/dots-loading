@@ -6,7 +6,7 @@ import com.geermank.dots.loading.circular.path.CircularProgressMovementDirection
 import com.geermank.dots.loading.circular.path.CircularProgressPathCalculator
 import com.geermank.dots.loading.circular.path.ClockwiseDirection
 import com.geermank.dots.loading.circular.path.CounterClockwiseDirection
-import com.geermank.dots.loading.view.DotLoading
+import com.geermank.dots.loading.view.DotLoadingView
 
 private const val RANDOM_INFERIOR_ANGLE_LIMIT = 15
 private const val RANDOM_SUPERIOR_ANGLE_LIMIT = 135
@@ -19,7 +19,7 @@ internal class OrbitPathCalculator : CircularProgressPathCalculator {
         return (RANDOM_INFERIOR_ANGLE_LIMIT..RANDOM_SUPERIOR_ANGLE_LIMIT).random()
     }
 
-    override fun createRectFForCirclePath(container: DotLoading, dot: Dot): RectF {
+    override fun createRectFForCirclePath(container: DotLoadingView, dot: Dot): RectF {
         val containerSize = container.getSizeInPixels().getSmallest()
 
         val maxValue = containerSize - dot.getDiameter()

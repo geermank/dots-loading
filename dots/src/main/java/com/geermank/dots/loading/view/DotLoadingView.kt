@@ -13,12 +13,12 @@ import com.geermank.dots.extensions.generateNewId
 import com.geermank.dots.loading.DotLoadingsFactoryMapper
 import com.geermank.dots.loading.DotsLoadingSizeTypes
 import com.geermank.dots.loading.DotsModifiersFactory
-import com.geermank.dots.loading.DotsModifiersFactoryType
+import com.geermank.dots.loading.DotLoadingTypes
 import com.geermank.dots.utils.ViewSize
 
 internal const val DEFAULT_NUMBER_OF_DOTS = 3
 
-class DotLoading : FrameLayout {
+class DotLoadingView : FrameLayout {
 
     private var specs: DotLoadingSpecs
     private var dotsModifiersFactory: DotsModifiersFactory
@@ -98,7 +98,7 @@ class DotLoading : FrameLayout {
         private val dotLoadingSpecs = DotLoadingSpecs()
         private var dotsModifierFactory: DotsModifiersFactory = DotsModifiersFactory.DEFAULT
 
-        fun setLoadingType(@DotsModifiersFactoryType index: Int): Builder {
+        fun setLoadingType(@DotLoadingTypes index: Int): Builder {
             dotsModifierFactory = DotLoadingsFactoryMapper.getByIndex(index)
             return this
         }
@@ -125,8 +125,8 @@ class DotLoading : FrameLayout {
             return this
         }
 
-        fun build(): DotLoading {
-            return DotLoading(context, dotLoadingSpecs, dotsModifierFactory).also { it.generateNewId() }
+        fun build(): DotLoadingView {
+            return DotLoadingView(context, dotLoadingSpecs, dotsModifierFactory).also { it.generateNewId() }
         }
     }
 }

@@ -6,11 +6,11 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Animation
 import com.geermank.dots.dot.Dot
 import com.geermank.dots.loading.DotsAnimation
-import com.geermank.dots.loading.view.DotLoading
+import com.geermank.dots.loading.view.DotLoadingView
 
 internal class BouncingDotAnimation : DotsAnimation {
 
-    override fun animateDot(container: DotLoading, dot: Dot, dotIndex: Int) {
+    override fun animateDot(container: DotLoadingView, dot: Dot, dotIndex: Int) {
         // we start jumping from the middle of the container
         val originY = container.getSizeInPixels().height / 2f
         // we jump 3 times the height of a dot

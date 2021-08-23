@@ -9,14 +9,14 @@ import com.geermank.dots.loading.tiktok.TikTokModifiersFactory
 object DotLoadingsFactoryMapper {
 
     private val modifierFactoriesMap = mapOf(
-        Pair(DotsModifiersFactoryType.CIRCULAR, CircularProgressModifiersFactory()),
-        Pair(DotsModifiersFactoryType.ORBIT, OrbitModifiersFactory()),
-        Pair(DotsModifiersFactoryType.LINEAR, LinearModifierFactory()),
-        Pair(DotsModifiersFactoryType.BOUNCE, BouncingModifierFactory()),
-        Pair(DotsModifiersFactoryType.TIK_TOK, TikTokModifiersFactory())
+        Pair(DotLoadingTypes.CIRCULAR, CircularProgressModifiersFactory()),
+        Pair(DotLoadingTypes.ORBIT, OrbitModifiersFactory()),
+        Pair(DotLoadingTypes.LINEAR, LinearModifierFactory()),
+        Pair(DotLoadingTypes.BOUNCE, BouncingModifierFactory()),
+        Pair(DotLoadingTypes.TIK_TOK, TikTokModifiersFactory())
     )
 
-    internal fun getByIndex(@DotsModifiersFactoryType index: Int): DotsModifiersFactory {
+    internal fun getByIndex(@DotLoadingTypes index: Int): DotsModifiersFactory {
         return modifierFactoriesMap.getOrElse(index) { DotsModifiersFactory.DEFAULT }
     }
 }

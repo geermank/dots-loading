@@ -8,7 +8,7 @@ import com.geermank.dots.dot.Dot
 import com.geermank.dots.loading.DotsAnimation
 import com.geermank.dots.loading.circular.path.CircularProgressPathCalculator
 import com.geermank.dots.loading.circular.path.DefaultCircularProgressPathCalculator
-import com.geermank.dots.loading.view.DotLoading
+import com.geermank.dots.loading.view.DotLoadingView
 
 private const val ARC_START_ANGLE = 0f
 private const val ARC_SWEEP_ANGLE = 180f
@@ -17,7 +17,7 @@ internal class CircularProgressAnimation(
     private val pathCalculator: CircularProgressPathCalculator = DefaultCircularProgressPathCalculator()
 ) : DotsAnimation {
 
-    override fun animateDot(container: DotLoading, dot: Dot, dotIndex: Int) {
+    override fun animateDot(container: DotLoadingView, dot: Dot, dotIndex: Int) {
         val pathMeasure = PathMeasure(
             createCirclePath(container, dot, dotIndex),
             false
@@ -38,7 +38,7 @@ internal class CircularProgressAnimation(
         }
     }
 
-    private fun createCirclePath(container: DotLoading, dot: Dot, dotIndex: Int): Path {
+    private fun createCirclePath(container: DotLoadingView, dot: Dot, dotIndex: Int): Path {
         val angleOffset = pathCalculator.calculateAngleOffset(dotIndex)
         val circleRect = pathCalculator.createRectFForCirclePath(container, dot)
         val movementDirection = pathCalculator.progressMovementDirection()

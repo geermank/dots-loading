@@ -2,7 +2,7 @@ package com.geermank.dots.loading.circular.path
 
 import android.graphics.RectF
 import com.geermank.dots.dot.Dot
-import com.geermank.dots.loading.view.DotLoading
+import com.geermank.dots.loading.view.DotLoadingView
 
 const val DEFAULT_DOT_SEPARATION_ANGLE = 15
 const val DEFAULT_ANIMATION_SPEED = 2500L
@@ -13,7 +13,7 @@ internal class DefaultCircularProgressPathCalculator : CircularProgressPathCalcu
         return dotIndex * DEFAULT_DOT_SEPARATION_ANGLE
     }
 
-    override fun createRectFForCirclePath(container: DotLoading, dot: Dot): RectF {
+    override fun createRectFForCirclePath(container: DotLoadingView, dot: Dot): RectF {
         // we must get the smallest value, if not a dot may be cut during animation
         val containerSize = container.getSizeInPixels().getSmallest().toFloat()
         val sizeWithMargin = containerSize - dot.getDiameter()

@@ -3,7 +3,7 @@ package com.geermank.dots.loading.tiktok
 import android.animation.*
 import com.geermank.dots.dot.Dot
 import com.geermank.dots.loading.DotsAnimation
-import com.geermank.dots.loading.view.DotLoading
+import com.geermank.dots.loading.view.DotLoadingView
 
 private const val BACKGROUND_DOT_Z_AXIS = 0f
 private const val FOREGROUND_DOT_Z_AXIS = 100f
@@ -22,7 +22,7 @@ internal class TikTokDotAnimation : DotsAnimation {
         center - translation
     }
 
-    override fun animateDot(container: DotLoading, dot: Dot, dotIndex: Int) {
+    override fun animateDot(container: DotLoadingView, dot: Dot, dotIndex: Int) {
         // remember that this animation only works with two dots, not less no more
         if (dotIndex == 0) {
             runTranslationAnimation(container, dot, calculateLeftXFromCenter, calculateRightXFromCenter)
@@ -33,7 +33,7 @@ internal class TikTokDotAnimation : DotsAnimation {
     }
 
     private fun runTranslationAnimation(
-        container: DotLoading,
+        container: DotLoadingView,
         dot: Dot,
         originXOperation: (Double, Double) -> Double,
         targetXOperation: (Double, Double) -> Double
@@ -65,7 +65,7 @@ internal class TikTokDotAnimation : DotsAnimation {
         }
     }
 
-    private fun getTheCenterOfTheContainer(container: DotLoading) =
+    private fun getTheCenterOfTheContainer(container: DotLoadingView) =
         container.getSizeInPixels().getSmallest() / 2.0
 
     private fun invertZAxisValue(dot: Dot) {

@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.geermank.dots.loading.view.DotLoading
+    <com.geermank.dots.loading.view.DotLoadingView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:loadingType="bouncing"
-        app:dotsColorsArray="@array/dot_multiple_colors"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

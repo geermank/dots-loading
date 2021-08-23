@@ -10,8 +10,7 @@ import android.widget.EditText
 import android.widget.FrameLayout
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.fragment.app.Fragment
-import com.geermank.dots.extensions.generateNewId
-import com.geermank.dots.loading.view.DotLoading
+import com.geermank.dots.loading.view.DotLoadingView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 
@@ -50,7 +49,7 @@ class DynamicLoadingFragment : Fragment() {
     }
 
     private fun createLoadingBasedOnUserSpecs() {
-        val dotLoading = DotLoading.Builder(requireContext())
+        val dotLoading = DotLoadingView.Builder(requireContext())
                 .setLoadingType(loadingTypesSpinner.selectedItemPosition)
                 .setLoadingSize(loadingSizeSpinner.selectedItemPosition)
                 .setNumberOfDots(numberOfDotsInput.text.toString().toInt())
@@ -64,13 +63,13 @@ class DynamicLoadingFragment : Fragment() {
     }
 
     private fun removeLoadingAndShowConfig() {
-        view?.findViewById<DotLoading>(loadingId)?.let {
+        view?.findViewById<DotLoadingView>(loadingId)?.let {
             (view as ViewGroup).removeView(it)
             showConfigContainer()
         }
     }
 
-    private fun centerView(dotLoading: DotLoading) {
+    private fun centerView(dotLoading: DotLoadingView) {
         dotLoading.layoutParams = FrameLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT).also {
             it.gravity = Gravity.CENTER
         }
