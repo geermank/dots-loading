@@ -42,7 +42,7 @@ You don't need to specify any attribute to use it, this view will just take defa
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.geermank.dots.loading.view.DotLoading
+    <com.geermank.dots.loading.view.DotLoadingView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -77,7 +77,7 @@ Go to the previous section to see how they look.
 Here you have an example of all the attributes combined:
 
 ```
-<com.geermank.dots.loading.view.DotLoading
+<com.geermank.dots.loading.view.DotLoadingView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:loadingType="bouncing"
@@ -93,7 +93,7 @@ Here you have an example of all the attributes combined:
 
 ### Adding the loading programmatically
 
-The `DotLoading` class has a Builder class that lets you create an instance of this view. Here you have an example of how to use it:
+The `DotLoadingView` class has a Builder class that lets you create an instance of this view. Here you have an example of how to use it:
 ```
 val loading = DotLoading.Builder(requireContext())
     .setLoadingType(DotLoadingTypes.LINEAR)
