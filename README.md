@@ -17,11 +17,20 @@ And then add this line in the `build.gradle` file of your module:
 
 `implementation 'com.github.geermank:dots-loading:0.2.0'`
 
+## Loading types
+
+| Circular | Orbits | Linear |
+|----------|--------|--------|
+|<img src="https://user-images.githubusercontent.com/58485943/130527543-425e689e-5849-4cb8-b110-68cb88785f1f.gif" width="260" height="480">|<img src="https://user-images.githubusercontent.com/58485943/130527598-414e3a28-e786-4286-893f-648e280c8b63.gif" width="260" height="480">|<img src="https://user-images.githubusercontent.com/58485943/130527767-4eea1af1-9fe6-4b32-894e-106f1a693515.gif" width="260" height="480">|
+| Bounce | TikTok |
+|<img src="https://user-images.githubusercontent.com/58485943/130527862-b408ffb0-354e-4f25-9140-fff2d3330674.gif" width="260" height="480">|<img src="https://user-images.githubusercontent.com/58485943/130527937-1cd35d8d-9c06-4ac4-932e-881f05f1322d.gif" width="260" height="480">|
+
+
 ## How to use it
 
 You can add this loading in your xml file or programmatically.
 
-### Adding this loading in your xml
+### Adding the loading in your xml
 
 You don't need to specify any attribute to use it, this view will just take default values if you don't:
 
@@ -33,7 +42,7 @@ You don't need to specify any attribute to use it, this view will just take defa
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.geermank.dots.loading.view.DotLoading
+    <com.geermank.dots.loading.view.DotLoadingView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -54,7 +63,7 @@ You can customize your loading using the following attributes:
 
 `dotsColor`: this is the primary color of your loading. The dots will be painted with it unless you specify a color array.
 
-`dotsColorsArray`: this attribute lets you paint each dot with a different color. The order of the array is considered to paint the dot; this means that the first color will paint the first dot, the second color will paint the second dot, and so on. If you have more dots than colors, the rest of the dots will be painted with the color specified in the attribute `dotsColor`. If you don't set this color, the rest of the dots will be painted with your primary color
+`dotsColorsArray`: this attribute lets you paint each dot with a different color. The order of the array is important since it is considered when we do the painting; this means that the first color will be used to paint the first dot, the second color will be used the paint the second dot, and so on. If you have more dots than colors, the rest of the dots will be painted with the color specified in the attribute `dotsColor`. If you don't set this color, the rest of the dots will be painted with your primary color
 
 `loadingType`: the type of animation the dots will suffer. You can choose one of the following options:
 1. circular
@@ -63,12 +72,12 @@ You can customize your loading using the following attributes:
 4. bouncing
 5. tik_tok
 
-Go to the following section to see how they look.
+Go to the previous section to see how they look.
 
 Here you have an example of all the attributes combined:
 
 ```
-<com.geermank.dots.loading.view.DotLoading
+<com.geermank.dots.loading.view.DotLoadingView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:loadingType="bouncing"
@@ -80,4 +89,17 @@ Here you have an example of all the attributes combined:
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"/>
+```
+
+### Adding the loading programmatically
+
+The `DotLoadingView` class has a Builder class that lets you create an instance of this view. Here you have an example of how to use it:
+```
+val loading = DotLoading.Builder(requireContext())
+    .setLoadingType(DotLoadingTypes.LINEAR)
+    .setLoadingSize(DotsLoadingSizeTypes.SMALL)
+    .setNumberOfDots(5)
+    .setDotPrimaryColor(R.color.black)
+    .build()
+container.addView(loading)
 ```
