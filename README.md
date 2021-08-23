@@ -16,9 +16,11 @@ To add this library in your project, add the following line in the `build.gradle
 
 And then add this line in the `build.gradle` file of your module:
 
-`implementation 'com.github.geermank:dots-loading:0.2.0'`
+`implementation 'com.github.geermank:dots-loading:$library_version'`
 
 ## Loading types
+
+These are some examples of our available loading types. All of them are `large` loadings, with the default color (the primary color of the test app), but of course you can customize these properties and more 😉
 
 | Circular | Orbits | Linear |
 |----------|--------|--------|
