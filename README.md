@@ -1,5 +1,5 @@
 # Dots Loadings
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/geermank/dots-loading) [![API](https://img.shields.io/badge/API-21%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=21)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/geermank/dots-loading) [![API](https://img.shields.io/badge/API-23%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=23)
 
 ## Description
 This is an Android library made 100% in Kotlin, in which you will find many loadings (all made with DOTS), to let the user know that something is going on in the background!
