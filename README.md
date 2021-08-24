@@ -25,8 +25,8 @@ These are some examples of our available loading types. All of them are `large` 
 | Circular | Orbits | Linear |
 |----------|--------|--------|
 |<img src="https://user-images.githubusercontent.com/58485943/130527543-425e689e-5849-4cb8-b110-68cb88785f1f.gif" width="260" height="480">|<img src="https://user-images.githubusercontent.com/58485943/130527598-414e3a28-e786-4286-893f-648e280c8b63.gif" width="260" height="480">|<img src="https://user-images.githubusercontent.com/58485943/130527767-4eea1af1-9fe6-4b32-894e-106f1a693515.gif" width="260" height="480">|
-| Bounce | TikTok |
-|<img src="https://user-images.githubusercontent.com/58485943/130534108-727ee424-6afb-4fe3-82d0-df6ddefdf738.gif" width="260" height="480">|<img src="https://user-images.githubusercontent.com/58485943/130527937-1cd35d8d-9c06-4ac4-932e-881f05f1322d.gif" width="260" height="480">|
+| Bounce | TikTok | Flip |
+|<img src="https://user-images.githubusercontent.com/58485943/130534108-727ee424-6afb-4fe3-82d0-df6ddefdf738.gif" width="260" height="480">|<img src="https://user-images.githubusercontent.com/58485943/130527937-1cd35d8d-9c06-4ac4-932e-881f05f1322d.gif" width="260" height="480">|<img src="https://user-images.githubusercontent.com/58485943/130535337-ff035442-44b1-4879-8b44-976e030ffefa.gif" width="260" height="480">|
 
 
 ## How to use it
