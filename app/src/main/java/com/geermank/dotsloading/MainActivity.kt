@@ -19,24 +19,28 @@ class MainActivity : AppCompatActivity(), MenuFragment.MenuFragmentListener {
         replaceFragment(DynamicLoadingFragment())
     }
 
-    override fun showCircularProgress() {
+    override fun showCircularLoading() {
         replaceFragment(CircularProgressFragment())
     }
 
-    override fun showOrbitProgress() {
+    override fun showOrbitLoading() {
         replaceFragment(OrbitProgressFragment())
     }
 
-    override fun showLinearProgress() {
+    override fun showLinearLoading() {
         replaceFragment(LinearProgressFragment())
     }
 
-    override fun showBounceProgress() {
+    override fun showBounceLoading() {
         replaceFragment(BounceProgressFragment())
     }
 
-    override fun showTikTokProgress() {
+    override fun showTikTokLoading() {
         replaceFragment(TikTokDotLoadingFragment())
+    }
+
+    override fun showFlipLoading() {
+        replaceFragment(FlipProgressFragment())
     }
 
     private fun replaceFragment(newFragment: Fragment) {

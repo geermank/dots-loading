@@ -22,31 +22,38 @@
             android:id="@+id/circular_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Circular progress"/>
+            android:text="Circular loading"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/orbit_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Orbit progress"/>
+            android:text="Orbit loading"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/linear_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Linear progress"/>
+            android:text="Linear loading"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/bouncing_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bounce progress"/>
+            android:text="Bounce loading"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/tik_tok_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TikTok progress"/>
+            android:text="TikTok loading"/>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/flip_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Flip loading"/>
 
     </LinearLayout>
 </ScrollView>

@@ -12,13 +12,13 @@ internal class BouncingDotAnimation : DotsAnimation {
 
     override fun animateDot(container: DotLoadingView, dot: Dot, dotIndex: Int) {
         // we start jumping from the middle of the container
-        val originY = container.getSizeInPixels().height / 2f
-        // we jump 3 times the height of a dot
-        val targetY = originY - (dot.getDiameter() * 3)
+        val originY = (container.getSizeInPixels().height / 2f) - (dot.getDiameter() / 2)
+        // we jump 2 times the height of a dot
+        val targetY = originY - (dot.getDiameter() * 2)
         ObjectAnimator.ofFloat(dot, View.TRANSLATION_Y, originY, targetY).apply {
             repeatMode = ObjectAnimator.REVERSE
             repeatCount = Animation.INFINITE
-            startDelay = 100 * dotIndex.toLong() // the dots at the left start jumping first
+            startDelay = 100L * dotIndex // the dots at the left start jumping first
             interpolator = AccelerateDecelerateInterpolator()
             start()
         }

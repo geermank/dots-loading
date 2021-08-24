@@ -12,11 +12,12 @@ class MenuFragment : Fragment() {
 
     interface MenuFragmentListener {
         fun showDynamicLoading()
-        fun showCircularProgress()
-        fun showOrbitProgress()
-        fun showLinearProgress()
-        fun showBounceProgress()
-        fun showTikTokProgress()
+        fun showCircularLoading()
+        fun showOrbitLoading()
+        fun showLinearLoading()
+        fun showBounceLoading()
+        fun showTikTokLoading()
+        fun showFlipLoading()
     }
 
     private lateinit var listener: MenuFragmentListener
@@ -36,23 +37,27 @@ class MenuFragment : Fragment() {
         }
 
         view.findViewById<MaterialButton>(R.id.circular_progress).apply {
-            setOnClickListener { listener.showCircularProgress() }
+            setOnClickListener { listener.showCircularLoading() }
         }
 
         view.findViewById<MaterialButton>(R.id.orbit_progress).apply {
-            setOnClickListener { listener.showOrbitProgress() }
+            setOnClickListener { listener.showOrbitLoading() }
         }
 
         view.findViewById<MaterialButton>(R.id.linear_progress).apply {
-            setOnClickListener { listener.showLinearProgress() }
+            setOnClickListener { listener.showLinearLoading() }
         }
 
         view.findViewById<MaterialButton>(R.id.bouncing_progress).apply {
-            setOnClickListener { listener.showBounceProgress() }
+            setOnClickListener { listener.showBounceLoading() }
         }
 
         view.findViewById<MaterialButton>(R.id.tik_tok_progress).apply {
-            setOnClickListener { listener.showTikTokProgress() }
+            setOnClickListener { listener.showTikTokLoading() }
+        }
+
+        view.findViewById<MaterialButton>(R.id.flip_progress).apply {
+            setOnClickListener { listener.showFlipLoading() }
         }
     }
 }

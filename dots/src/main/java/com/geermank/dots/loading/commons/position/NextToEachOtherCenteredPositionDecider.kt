@@ -1,4 +1,4 @@
-package com.geermank.dots.loading.bouncing
+package com.geermank.dots.loading.commons.position
 
 import com.geermank.dots.dot.Dot
 import com.geermank.dots.extensions.isEven
@@ -6,16 +6,16 @@ import com.geermank.dots.loading.DotPositionDecider
 import com.geermank.dots.loading.view.DotLoadingSpecs
 import com.geermank.dots.utils.Coordinates
 
-internal class BouncingPositionDecider : DotPositionDecider {
+internal class NextToEachOtherCenteredPositionDecider : DotPositionDecider {
 
     override fun getPosition(dotIndex: Int, dot: Dot, dotLoadingSpecs: DotLoadingSpecs): Coordinates {
-        val y = calculateYCoordinate(dotLoadingSpecs)
+        val y = calculateYCoordinate(dot, dotLoadingSpecs)
         val x = calculateXCoordinate(dotIndex, dot, dotLoadingSpecs)
         return Coordinates(x, y)
     }
 
-    private fun calculateYCoordinate(dotLoadingSpecs: DotLoadingSpecs): Double {
-        return dotLoadingSpecs.getContainerHeightInPixels() / 2.0
+    private fun calculateYCoordinate(dot: Dot, dotLoadingSpecs: DotLoadingSpecs): Double {
+        return (dotLoadingSpecs.getContainerHeightInPixels() / 2.0) - (dot.getDiameter() / 2.0)
     }
 
     private fun calculateXCoordinate(
