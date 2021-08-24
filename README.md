@@ -107,3 +107,7 @@ val loading = DotLoading.Builder(requireContext())
     .build()
 container.addView(loading)
 ```
+
+## License
+
+This library is licensed under the Apache License, Version 2.0. See [LICENSE](https://github.com/geermank/dots-loading/blob/master/LICENSE) for the full license text.
