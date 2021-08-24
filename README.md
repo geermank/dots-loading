@@ -74,6 +74,7 @@ You can customize your loading using the following attributes:
 3. linear
 4. bouncing
 5. tik_tok
+6. flip
 
 Go to the previous section to see how they look.
 
