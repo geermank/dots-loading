@@ -43,6 +43,10 @@ class MainActivity : AppCompatActivity(), MenuFragment.MenuFragmentListener {
         replaceFragment(FlipProgressFragment())
     }
 
+    override fun showScaleLoading() {
+        replaceFragment(ScaleLoadingFragment())
+    }
+
     private fun replaceFragment(newFragment: Fragment) {
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, newFragment)

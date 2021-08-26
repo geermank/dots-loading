@@ -18,6 +18,7 @@ class MenuFragment : Fragment() {
         fun showBounceLoading()
         fun showTikTokLoading()
         fun showFlipLoading()
+        fun showScaleLoading()
     }
 
     private lateinit var listener: MenuFragmentListener
@@ -58,6 +59,10 @@ class MenuFragment : Fragment() {
 
         view.findViewById<MaterialButton>(R.id.flip_progress).apply {
             setOnClickListener { listener.showFlipLoading() }
+        }
+
+        view.findViewById<MaterialButton>(R.id.scale_progress).apply {
+            setOnClickListener { listener.showScaleLoading() }
         }
     }
 }

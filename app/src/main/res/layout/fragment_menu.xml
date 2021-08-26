@@ -48,12 +48,17 @@
             android:layout_height="wrap_content"
             android:text="TikTok loading"/>
 
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/flip_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Flip loading"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/scale_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Scale loading"/>
 
     </LinearLayout>
 </ScrollView>

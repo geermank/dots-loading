@@ -14,6 +14,7 @@
             <enum name="bouncing" value="3"/>
             <enum name="tik_tok" value="4"/>
             <enum name="flip" value="5"/>
+            <enum name="scale" value="6"/>
         </attr>
         <attr name="dotsColor" format="reference"/>
         <attr name="dotsColorsArray" format="reference"/>
